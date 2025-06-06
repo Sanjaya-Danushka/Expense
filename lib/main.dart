@@ -9,6 +9,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Expense',
+      theme: ThemeData(fontFamily: 'Inter', primarySwatch: Colors.blue),
+      home: const Scaffold(
+        body: Center(
+          child: Text(
+            'Expense',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
   }
 }
