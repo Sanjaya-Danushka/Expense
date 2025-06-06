@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectzero/screens/onboarding_screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Expense',
       theme: ThemeData(fontFamily: 'Inter', primarySwatch: Colors.blue),
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'Expense',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+      home: const OnboardingScreens(),
     );
   }
 }
