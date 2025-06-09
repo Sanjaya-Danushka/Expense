@@ -30,6 +30,11 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                 //onbarding screes
                 PageView(
                   controller: _pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      showDetailsPage = index == 3;
+                    });
+                  },
                   children: [
                     FrontPage(),
                     OnboardingScreen(
@@ -69,36 +74,28 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                   right: 0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: !showDetailsPage
-                        ? GestureDetector(
-                            onTap: () {
-                              _pageController.nextPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                              );
-                              if (_pageController.page == 3) {
-                                showDetailsPage = true;
-                              }
-                            },
-                            child: CustomButton(
-                              text: 'Next',
-                              color: kMainColor,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (showDetailsPage) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UserDatascreen(),
                             ),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const UserDatascreen(),
-                                ),
-                              );
-                            },
-                            child: CustomButton(
-                              text: 'Done',
-                              color: kMainColor,
-                            ),
-                          ),
+                          );
+                        } else {
+                          _pageController.animateToPage(
+                            _pageController.page!.toInt() + 1,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        }
+                      },
+                      child: CustomButton(
+                        text: showDetailsPage ? 'Get Started' : 'Next',
+                        color: kMainColor,
+                      ),
+                    ),
                   ),
                 ),
               ],
