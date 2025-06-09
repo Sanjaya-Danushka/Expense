@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projectzero/constants/colors.dart';
 
 class UserDatascreen extends StatefulWidget {
-  const UserDatascreen({super.key})
+  const UserDatascreen({super.key});
 
   @override
   State<UserDatascreen> createState() => _UserDataScreenState();
