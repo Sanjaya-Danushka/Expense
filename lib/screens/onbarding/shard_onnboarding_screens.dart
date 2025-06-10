@@ -27,6 +27,7 @@ class OnboardingScreen extends StatelessWidget {
           SizedBox(height: 20),
           Text(
             title,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w500,
@@ -35,7 +36,11 @@ class OnboardingScreen extends StatelessWidget {
           ),
           //description
           SizedBox(height: 20),
-          Text(description, style: TextStyle(fontSize: 16, color: kGray)),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: kGray),
+          ),
         ],
       ),
     );

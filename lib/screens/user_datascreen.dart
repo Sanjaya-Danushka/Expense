@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projectzero/constants/colors.dart';
 import 'package:projectzero/constants/constants.dart';
+import 'package:projectzero/screens/main_screen.dart';
+import 'package:projectzero/services/user_service.dart';
 import 'package:projectzero/widgets/custome_button.dart';
 
 class UserDatascreen extends StatefulWidget {
@@ -162,7 +164,7 @@ class _UserDataScreenState extends State<UserDatascreen> {
                       SizedBox(height: 40),
                       //button
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           if (_formKey.currentState!.validate()) {
                             // do something
                             String name = _nameController.text;
@@ -170,10 +172,20 @@ class _UserDataScreenState extends State<UserDatascreen> {
                             String password = _passwordController.text;
                             String confirmPassword =
                                 _confirmPasswordController.text;
-                            print(name);
-                            print(email);
-                            print(password);
-                            print(confirmPassword);
+                            //save data in shared preferences
+                            await UserService.saveUserData(
+                              name,
+                              email,
+                              password,
+                              confirmPassword,
+                              context,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MainScreen(),
+                              ),
+                            );
                           }
                         },
                         child: CustomButton(text: 'Next', color: kMainColor),
