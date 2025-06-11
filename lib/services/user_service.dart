@@ -25,10 +25,12 @@ class UserService {
       await prefs.setString('password', password);
       await prefs.setString('confirmPassword', confirmPassword);
       ScaffoldMessenger.of(
+        // ignore: use_build_context_synchronously
         context,
       ).showSnackBar(SnackBar(content: Text('User data saved successfully')));
     } catch (e) {
       ScaffoldMessenger.of(
+        // ignore: use_build_context_synchronously
         context,
       ).showSnackBar(SnackBar(content: Text('Failed to save user data')));
     }
@@ -40,4 +42,12 @@ class UserService {
     String? name = prefs.getString('name');
     return name != null;
   }
+  //get user name and email
+  static Future<Map<String, String>> getUserName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? name = prefs.getString('name');
+    String? email = prefs.getString('email');
+    return {'name': name!, 'email': email!};
+  }
+
 }
