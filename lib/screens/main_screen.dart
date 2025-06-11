@@ -19,9 +19,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     //screen list
     List<Widget> screens = [
+      const AddNewScreen(),
       const HomePage(),
       const TransactionPage(),
-      const AddNewScreen(),
       const BudgetScreen(),
       const ProfileScreen(),
     ];
