@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projectzero/screens/onboarding_screens.dart';
+import 'package:projectzero/services/user_service.dart';
+import 'package:projectzero/widgets/wrapper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,11 +12,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Expense',
-      theme: ThemeData(fontFamily: 'Inter', primarySwatch: Colors.blue),
-      home: const OnboardingScreens(),
+    return FutureBuilder(
+      future: UserService.getUserData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          bool hasUserData = snapshot.data ?? false;
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(fontFamily: 'Inter'),
+            home: Wrapper(showMainscreen: hasUserData),
+          );
+        }
+      },
     );
   }
 }

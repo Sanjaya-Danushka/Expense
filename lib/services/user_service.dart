@@ -33,4 +33,11 @@ class UserService {
       ).showSnackBar(SnackBar(content: Text('Failed to save user data')));
     }
   }
+
+  //get user data from shared preferences
+  static Future<bool> getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? name = prefs.getString('name');
+    return name != null;
+  }
 }
