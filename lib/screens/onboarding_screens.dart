@@ -94,6 +94,7 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                       child: CustomButton(
                         text: showDetailsPage ? 'Get Started' : 'Next',
                         color: kMainColor,
+                        onPressed: () {},
                       ),
                     ),
                   ),

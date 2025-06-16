@@ -29,13 +29,39 @@ class Expense {
   final DateTime time;
   final String description;
 
-  Expense(
-    this.id,
-    this.title,
-    this.amount,
-    this.category,
-    this.date,
-    this.time,
-    this.description,
-  );
+  Expense({
+    required this.id,
+    required this.title,
+    required this.amount,
+    required this.category,
+    required this.date,
+    required this.time,
+    required this.description,
+  });
+
+  factory Expense.fromJson(Map<String, dynamic> json) {
+    return Expense(
+      id: json['id'],
+      title: json['title'],
+      amount: json['amount'],
+      category: ExpenseCategory.values.firstWhere(
+        (e) => e.name == json['category'],
+      ),
+      date: DateTime.parse(json['date']),
+      time: DateTime.parse(json['time']),
+      description: json['description'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'category': category.name,
+      'date': date.toIso8601String(),
+      'time': time.toIso8601String(),
+      'description': description,
+    };
+  }
 }

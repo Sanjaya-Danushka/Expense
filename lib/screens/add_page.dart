@@ -17,6 +17,11 @@ class _AddNewScreenState extends State<AddNewScreen> {
   int selectedTab = 0;
   ExpenseCategory expenseCategory = ExpenseCategory.food;
   IncomeCategory incomeCategory = IncomeCategory.salary;
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  DateTime _selectedDate = DateTime.now();
+  TimeOfDay _selectedTime = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
@@ -189,11 +194,13 @@ class _AddNewScreenState extends State<AddNewScreen> {
                                   }).toList()
                                 : IncomeCategory.values.map((category) {
                                     return DropdownMenuItem(
-                                      value:category,
+                                      value: category,
                                       child: Text(category.name),
                                     );
                                   }).toList(),
-                            value: selectedTab == 0 ? expenseCategory : incomeCategory,
+                            value: selectedTab == 0
+                                ? expenseCategory
+                                : incomeCategory,
                             onChanged: (value) {
                               setState(() {
                                 selectedTab == 0
@@ -205,6 +212,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                           SizedBox(height: kDefaultPadding),
                           //title
                           TextFormField(
+                            controller: _titleController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(100),
@@ -224,6 +232,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                           SizedBox(height: kDefaultPadding),
                           //description
                           TextFormField(
+                            controller: _descriptionController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(100),
@@ -243,6 +252,8 @@ class _AddNewScreenState extends State<AddNewScreen> {
                           SizedBox(height: kDefaultPadding),
                           //description
                           TextFormField(
+                            keyboardType: TextInputType.number,
+                            controller: _amountController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(100),
@@ -258,6 +269,122 @@ class _AddNewScreenState extends State<AddNewScreen> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
+                          ),
+                          //date picker
+                          SizedBox(height: kDefaultPadding),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2020),
+                                    lastDate: DateTime(2028),
+                                  ).then((value) {
+                                    setState(() {
+                                      _selectedDate = value!;
+                                    });
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: kMainColor,
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.calendar_month_outlined,
+                                          color: kWhite,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          'Select Date',
+                                          style: TextStyle(
+                                            color: kWhite,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                DateFormat(
+                                  'MMMM-EEEE-yy',
+                                ).format(_selectedDate),
+                                style: TextStyle(
+                                  color: kGray,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          //time picker
+                          SizedBox(height: kDefaultPadding),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  showTimePicker(
+                                    context: context,
+                                    initialTime: TimeOfDay.now(),
+                                  ).then((value) {
+                                    setState(() {
+                                      _selectedTime = value!;
+                                    });
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange,
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.access_time_outlined,
+                                          color: kWhite,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          'Select Time',
+                                          style: TextStyle(
+                                            color: kWhite,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "${_selectedTime.hour}:${_selectedTime.minute}",
+                                style: TextStyle(
+                                  color: kGray,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

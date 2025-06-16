@@ -189,7 +189,11 @@ class _UserDataScreenState extends State<UserDatascreen> {
                             );
                           }
                         },
-                        child: CustomButton(text: 'Next', color: kMainColor),
+                        child: CustomButton(
+                          text: 'Next',
+                          color: kMainColor,
+                          onPressed: () {},
+                        ),
                       ),
                     ],
                   ),
