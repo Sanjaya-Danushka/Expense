@@ -1,8 +1,4 @@
 {
-    "editor.tabCompletion": "on",
-    "diffEditor.codeLens": true,
-    "MutableAI.upsell": true,
-    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-    "editor.guides.bracketPairs": true,
-    "editor.codeActions.triggerOnFocusChange": false
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "disabled"
 }

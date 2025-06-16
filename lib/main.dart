@@ -1,9 +1,11 @@
+import 'package:expenz/services/user_details_service.dart';
+import 'package:expenz/widgets/wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:projectzero/services/user_service.dart';
-import 'package:projectzero/widgets/wrapper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -13,16 +15,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: UserService.getUserData(),
+      future: UserService.checkUsername(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const CircularProgressIndicator();
         } else {
-          bool hasUserData = snapshot.data ?? false;
+          bool hasUsername = snapshot.data ?? false;
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(fontFamily: 'Inter'),
-            home: Wrapper(showMainscreen: hasUserData),
+            theme: ThemeData(fontFamily: "Inter"),
+            home: Wrapper(
+              showMainScreen: hasUsername,
+            ),
           );
         }
       },

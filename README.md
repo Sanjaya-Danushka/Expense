@@ -1,16 +1,46 @@
-# projectzero
+![DP Education IT Campus](https://dpeducation.lk/en/assets/images/brands/en/it-campus.png)
 
-A new Flutter project.
+# Expenz - Application 07 ⚡️
+
+Expenz is a Flutter application designed to help users track their expenses and incomes efficiently. With its user-friendly interface and robust features, managing your finances becomes hassle-free.
+
+## Features
+
+- **Expense Tracking**: Record your expenses and incomes effortlessly.
+- **Storage**: Utilizes SharedPreferences for data storage, ensuring seamless data management.
+- **Data Visualization**: Incorporates charts for intuitive data tracking and analysis.
+- **Onboarding Screens**: Welcomes users with informative onboarding screens for a smooth introduction to the app.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. **Clone the repository**:
 
-A few resources to get you started if this is your first Flutter project:
+   ```bash
+   git clone https://github.com/HGSChandeepa/Expenz--App-07-DP-Education
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. **Navigate to the project directory**:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```bash
+   cd Expenz--App-07-DP-Education
+   ```
+
+3. **Install dependencies**:
+
+   ```bash
+   flutter pub get
+   ```
+
+4. **Run the app**:
+
+   ```bash
+   flutter run
+   ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## What you will create
+
+![Finished App](https://github.com/HGSChandeepa/Expenz--App-07-DP-Education/blob/main/assets/images/app.png)

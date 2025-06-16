@@ -1,24 +1,22 @@
-import 'package:projectzero/models/onboarding.dart';
+import 'package:expenz/models/onboarding_model.dart';
 
-class OnboardingData {
-  static List<Onboarding> onboardingList = [
+class OnbardingData {
+  static final List<Onboarding> onboardingList = [
     Onboarding(
       title: "Gain total control of your money",
-      description:
-          "Become your own money manager and make every cent count",
-      image: "assets/images/onboard_1.png",
+      imagePath: "assets/images/onboard_1.png",
+      description: "Become your own money manager and make every cent count",
     ),
     Onboarding(
       title: "Know where your money goes",
+      imagePath: "assets/images/onboard_2.png",
       description:
-          "Track your transaction easily with categories and financial report",
-      image: "assets/images/onboard_3.png",
+          "Track your transaction easily,with categories and financial report ",
     ),
     Onboarding(
       title: "Planning ahead",
-      description:
-          "Setup your budget for each category so you in control",
-      image: "assets/images/onboard_2.png",
+      imagePath: "assets/images/onboard_3.png",
+      description: "Setup your budget for each category so you in control",
     ),
   ];
 }
